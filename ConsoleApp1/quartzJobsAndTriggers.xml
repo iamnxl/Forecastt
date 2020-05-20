@@ -20,7 +20,7 @@
         <job-name>job1</job-name>
         <job-group>MyJobGroup</job-group>
         <misfire-instruction>DoNothing</misfire-instruction>
-        <cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+        <cron-expression>0 0/5 * 1/1 * ? *</cron-expression>
       </cron>
     </trigger>
     <trigger>
@@ -30,7 +30,7 @@
         <job-name>job2</job-name>
         <job-group>MyJobGroup</job-group>
         <misfire-instruction>DoNothing</misfire-instruction>
-        <cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
+        <cron-expression>0 0/5 * 1/1 * ? *</cron-expression>
       </cron>
     </trigger>
   </schedule>
