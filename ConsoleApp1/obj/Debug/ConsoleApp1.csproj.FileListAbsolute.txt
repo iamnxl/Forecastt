@@ -61,3 +61,13 @@ C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csprojA
 C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.csproj.CopyComplete
 C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.dll
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.pdb
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.xml
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\quartzJobsAndTriggers.xml
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.Jobs.dll
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.Plugins.dll
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.Jobs.pdb
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.Jobs.xml
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.Plugins.pdb
+C:\Users\damyn\Desktop\Ky4\ConsoleApp1\ConsoleApp1\bin\Debug\Quartz.Plugins.xml
