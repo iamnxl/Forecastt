@@ -26,7 +26,7 @@ namespace ConsoleApp1
             {
                 insertHistory(DateTime.Now.AddDays(-1), DateTime.Now, 362); //insert Data from previous day until now
             }
-            else 
+            else
             {
                 insertHistory(Convert.ToDateTime(QuerrySql.getMaxTimeHistory(362).Rows[0]["Time"]).AddSeconds(1), DateTime.Now, 362); //insert data from last time inserted until now
             }
@@ -69,7 +69,7 @@ namespace ConsoleApp1
             }
         }
 
-        static void insertForeCast(DateTime start, DateTime end, int id, double m1, double m2, double b)
+        static void insertForeCast(DateTime start, DateTime end, int id, double m1, double m2,double m3, double b)
         {
             WebClient web = new WebClient();
             JavaScriptSerializer java = new JavaScriptSerializer();
@@ -86,7 +86,7 @@ namespace ConsoleApp1
                     envTemp.Add(item.envtemp);
                     time.Add(Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')));
 
-                    QuerrySql.insertForeCast(Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')), item.ghi * m1 + item.envtemp * m2 + b, item.ghi, item.envtemp, id); //Convert 2020-05-19T07:53:00 to 2020/05/19 07:53:00
+                    QuerrySql.insertForeCast(Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')), item.ghi * m1 + item.envtemp * m2 + Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')).TimeOfDay.TotalSeconds * m3 + b, item.ghi, item.envtemp, id); //Convert 2020-05-19T07:53:00 to 2020/05/19 07:53:00
                 }
 
             }
@@ -101,6 +101,7 @@ namespace ConsoleApp1
             List<double> capacity = new List<double>();
             List<double> ghi = new List<double>();
             List<double> enviromentTemp = new List<double>();
+            List<double> time = new List<double>();
             DateTime timeToGet;
             timeToGet = Convert.ToDateTime(QuerrySql.getMaxTimeHistory(id).Rows[0]["Time"]);
             foreach (DataRow row in QuerrySql.getHistoryByTime(id, timeToGet.AddDays(-1), timeToGet).Rows) //get data from previous 24 hours
@@ -108,38 +109,36 @@ namespace ConsoleApp1
                 capacity.Add(Convert.ToDouble(row["Capacity"]));
                 ghi.Add(Convert.ToDouble(row["Ghi"]));
                 enviromentTemp.Add(Convert.ToDouble(row["EnviromentTemp"]));
+                time.Add(Convert.ToDateTime(row["Time"].ToString().Replace('-', '/').Replace('T', ' ')).TimeOfDay.TotalSeconds);
             }
-            double[] result = new double[3];
-            result = multi_linear_regression(ghi.ToArray(), enviromentTemp.ToArray(), capacity.ToArray()); //compute weight 
-            Console.WriteLine("Cost is: " + cost_function(ghi.ToArray(), enviromentTemp.ToArray(), capacity.ToArray(), result[0], result[1], result[2])); //compute cost
-            if (QuerrySql.getForeCast(id).Rows.Count == 0) 
+            double[] result = new double[4];
+            result = multi_linear_regression(ghi.ToArray(), enviromentTemp.ToArray(), time.ToArray(), capacity.ToArray()); //compute weight 
+            Console.WriteLine("Cost is: " + cost_function(ghi.ToArray(), enviromentTemp.ToArray(), time.ToArray(), capacity.ToArray(), result[0], result[1], result[2], result[3])); //compute cost
+            if (QuerrySql.getForeCast(id).Rows.Count == 0)
             {
-                insertForeCast(timeToGet.AddSeconds(1), timeToGet.AddHours(6), id, result[0], result[1], result[2]);//Compute forecast from Now to 6 hous later
+                insertForeCast(timeToGet.AddSeconds(1), timeToGet.AddHours(6), id, result[0], result[1], result[2],result[3]);//Compute forecast from Now to 6 hous later
             }
             else
             {
                 DateTime temp = Convert.ToDateTime(QuerrySql.getMaxTimeForecast(id).Rows[0]["Time"]);
-                insertForeCast(temp.AddSeconds(1), DateTime.Now.AddHours(6), id, result[0], result[1], result[2]);//Compute forecast 5 minutes later from the last forecast
+                insertForeCast(temp.AddSeconds(1), DateTime.Now.AddHours(6), id, result[0], result[1], result[2], result[3]);//Compute forecast 5 minutes later from the last forecast
             }
             return result;
         }
 
-        static double[] multi_linear_regression(double[] x1, double[] x2, double[] y)
+        static double[] multi_linear_regression(double[] x1, double[] x2, double[] x3, double[] y)
         {
             double[][] matrix = new double[x1.Length][];
             for (int i = 0; i < x1.Length; i++)
             {
-                matrix[i] = new[] { x1[i], x2[i] };
+                matrix[i] = new[] { x1[i], x2[i], x3[i] };
             }
-            double[] p = new double[3];
-            for (int i = 0; i < 1; i++)
-            {
-                p = MultipleRegression.QR(matrix, y, intercept: true);
-            }
+            double[] p = new double[4];
+            p = MultipleRegression.QR(matrix, y, intercept: true);
             return p;
         }
 
-        static double cost_function(double[] x1, double[] x2, double[] y, double m1, double m2, double b)
+        static double cost_function(double[] x1, double[] x2, double[] x3, double[] y, double m1, double m2, double m3, double b)
         {
             int count = x1.Length;
             double sum_error = 0;
@@ -154,7 +153,7 @@ namespace ConsoleApp1
             max90 = max90 * 0.9;
             for (int i = 0; i < count; i++)
             {
-                sum_error += y[i] - (m1 * x1[i] + m2 * x2[i] + b) / (max90); //(thucTe - duDoan) / congSuat_thietKe
+                sum_error += y[i] - (m1 * x1[i] + m2 * x2[i] + m3 * x3[i] + b) / (max90); //(thucTe - duDoan) / congSuat_thietKe
             }
             return sum_error / count;
         }

@@ -27,8 +27,8 @@ namespace ConsoleApp1
                     s.WhenStopped(service => service.Stop());
                 });
                 x.RunAsLocalSystem();
-                x.SetServiceName("ForecastService");
-                x.SetDisplayName("Forecast Service");
+                x.SetServiceName("ForecastService2.0");
+                x.SetDisplayName("Forecast Service 2.0");
                 x.SetDescription("No description");
 
             });
