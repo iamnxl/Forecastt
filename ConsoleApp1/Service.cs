@@ -21,26 +21,19 @@ namespace ConsoleApp1
 
         public void Start()
         {
-            while (true)
+            var properties = new NameValueCollection
             {
-                DateTime temp = DateTime.Now;
-                if (Math.Floor((double)temp.Minute / 1.0) * 1 == temp.Minute) //timer start each 5 minutes: Ex: 5h00, 5h05, 5h10 ....
-                {
-                    var properties = new NameValueCollection
-                    {
-                        ["quartz.scheduler.instanceName"] = "XmlConfiguredInstance",
-                        ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
-                        ["quartz.threadPool.threadCount"] = "5",
-                        ["quartz.plugin.xml.type"] = "Quartz.Plugin.Xml.XMLSchedulingDataProcessorPlugin, Quartz.Plugins",
-                        ["quartz.plugin.xml.fileNames"] = "~/quartzJobsAndTriggers.xml",
-                        ["quartz.plugin.xml.FailOnFileNotFound"] = "true",
-                        ["quartz.plugin.xml.failOnSchedulingError"] = "true"
-                    };
-                    IScheduler scheduler = new StdSchedulerFactory(properties).GetScheduler().Result;
-                    scheduler.Start();
-                    break;
-                }
-            }
+                ["quartz.scheduler.instanceName"] = "XmlConfiguredInstance",
+                ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
+                ["quartz.threadPool.threadCount"] = "1",
+                ["quartz.plugin.xml.type"] = "Quartz.Plugin.Xml.XMLSchedulingDataProcessorPlugin, Quartz.Plugins",
+                ["quartz.plugin.xml.fileNames"] = "~/quartzJobsAndTriggers.xml",
+                ["quartz.plugin.xml.FailOnFileNotFound"] = "true",
+                ["quartz.plugin.xml.failOnSchedulingError"] = "true"
+            };
+            IScheduler scheduler = new StdSchedulerFactory(properties).GetScheduler().Result;
+            scheduler.Start();
+            
         }
         public void Stop() { }
     }

@@ -13,6 +13,7 @@ namespace ConsoleApp1
         public double capacity { get; set; }
         public double ghi { get; set; }
         public double envtemp { get; set; }
+        public double air_temperature { get; set; }
 
     }
 }

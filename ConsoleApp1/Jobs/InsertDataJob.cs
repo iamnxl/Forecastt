@@ -21,6 +21,7 @@ namespace ConsoleApp1.Jobs
             {
                 insertHistory(Convert.ToDateTime(QuerrySql.getMaxTimeHistory(362).Rows[0]["Time"]).AddSeconds(1), DateTime.Now, 362); //insert data from last time inserted until now
             }
+
             return Task.FromResult(true);
         }
 

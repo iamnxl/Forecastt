@@ -6,44 +6,11 @@
 
 <h2>Total GHI in next 6 hours: @ViewBag.Total</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.FactoryID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Time)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Capacity)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ghi)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EnviromentTemp)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FactoryID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Time)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Capacity)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ghi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnviromentTemp)
-        </td>
-    </tr>
+<div>
+    <img src="@Url.Action("Chart")" />
+</div>
+@section scripts{
+    <script src="~/Scripts/jquery.signalR-2.4.1.min.js"></script>
+    <script src="~/signalr/js"></script>
+    <script src="~/Scripts/MyJavascript.js"></script>
 }
-
-</table>

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "UploadImage";
+}
+
+<h2>UploadImage</h2>
+<div class="form-inline">
+    Chọn hình ảnh <input type="text" name="picture" id="picture" class="form-control" />
+    <input type="file" id="fileUpload" name="fileUpload" style="display:none" />
+    <input type="button" id="btnUpload" value="..." class="btn btn-default" />
+    <hr />
+</div>
+<img id="pictureUpload" width="300" />
+
+@section upload{
+    <script>
+        $(function () {
+            $('#btnUpload').click(function () {
+                $('#fileUpload').trigger('click');
+            });
+        });
+        $('#fileUpload').change(function () {
+            if (window.FormData !== undefined) {
+                var fileUpload = $('#fileUpload').get(0);
+                var files = fileUpload.files;
+                var formData = new FormData();
+                formData.append('file', files[0]);
+                $.ajax(
+                    {
+                        type: 'POST',
+                        url: 'ProcessUpload',
+                        contentType:false,
+                        processData: false,
+                        data: formData,
+                        success: function (urlImage) {
+                            $('#pictureUpload').attr('src', urlImage);
+                            $('#picture').val(urlImage);
+                        },
+                        error: function (err) {
+                            alert(err.statusText)
+                        }
+                    }
+                )
+            }
+        });
+    </script>
+}

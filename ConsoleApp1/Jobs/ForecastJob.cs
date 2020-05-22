@@ -33,10 +33,10 @@ namespace ConsoleApp1.Jobs
                 foreach (DataModel item in listForeCast.data)
                 {
                     ghi.Add(item.ghi);
-                    envTemp.Add(item.envtemp);
+                    envTemp.Add(item.air_temperature);
                     time.Add(Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')));
 
-                    QuerrySql.insertForeCast(Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')), item.ghi * m1 + item.envtemp * m2 + Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')).TimeOfDay.TotalSeconds * m3 + b, item.ghi, item.envtemp, id); //Convert 2020-05-19T07:53:00 to 2020/05/19 07:53:00
+                    QuerrySql.insertForeCast(Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')), item.ghi * m1 + item.air_temperature * m2 + Convert.ToDateTime(item.date.Replace('-', '/').Replace('T', ' ')).TimeOfDay.TotalSeconds * m3 + b, item.ghi, item.air_temperature, id); //Convert 2020-05-19T07:53:00 to 2020/05/19 07:53:00
                 }
 
             }
