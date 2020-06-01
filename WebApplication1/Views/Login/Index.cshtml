@@ -1,0 +1,37 @@
+﻿@model WebApplication1.Models.User
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<body class="text-center">
+    <form class="form-signin">
+    </form>
+    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input type="text" id="inputEmail" name="Account" class="form-control col-md-2" placeholder="Account"  autofocus="" style="margin:auto">
+        @Html.ValidationMessageFor(model => model.Account, "", new { @class = "text-danger" })
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" name="Password" class="form-control col-md-2" placeholder="Password"  style="margin:auto">
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+        <div class="checkbox mb-3">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block col-md-2" type="submit" style="margin:auto">Sign in</button>
+        <p class="text-danger">@ViewBag.LoginError</p>
+        <div class="mb-3">
+            <label>
+                @Html.ActionLink("Create an account", "CreateAccount", null, null)
+            </label>
+        </div>
+    }
+</body>

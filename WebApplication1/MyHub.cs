@@ -8,9 +8,9 @@ namespace WebApplication1
 {
     public class MyHub:Hub
     {
-       public void DrawGraph()
+       public void DrawGraph(string message)
         {
-            Clients.All.DrawGraph();
+            Clients.All.DrawGraph(message);
         }
     }
 }

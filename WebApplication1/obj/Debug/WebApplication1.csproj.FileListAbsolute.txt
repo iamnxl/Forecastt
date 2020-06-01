@@ -257,3 +257,7 @@ D:\ConsoleApp1\Forecastt\WebApplication1\obj\Debug\WebApplication1.csprojAssembl
 D:\ConsoleApp1\Forecastt\WebApplication1\obj\Debug\WebApplication1.csproj.CopyComplete
 D:\ConsoleApp1\Forecastt\WebApplication1\obj\Debug\WebApplication1.dll
 D:\ConsoleApp1\Forecastt\WebApplication1\obj\Debug\WebApplication1.pdb
+D:\ConsoleApp1\Forecastt\WebApplication1\bin\System.Net.Http.Formatting.dll
+D:\ConsoleApp1\Forecastt\WebApplication1\bin\System.Web.Http.dll
+D:\ConsoleApp1\Forecastt\WebApplication1\bin\System.Net.Http.Formatting.xml
+D:\ConsoleApp1\Forecastt\WebApplication1\bin\System.Web.Http.xml

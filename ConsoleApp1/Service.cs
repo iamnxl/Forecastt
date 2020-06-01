@@ -25,7 +25,7 @@ namespace ConsoleApp1
             {
                 ["quartz.scheduler.instanceName"] = "XmlConfiguredInstance",
                 ["quartz.threadPool.type"] = "Quartz.Simpl.SimpleThreadPool, Quartz",
-                ["quartz.threadPool.threadCount"] = "1",
+                ["quartz.threadPool.threadCount"] = "5",
                 ["quartz.plugin.xml.type"] = "Quartz.Plugin.Xml.XMLSchedulingDataProcessorPlugin, Quartz.Plugins",
                 ["quartz.plugin.xml.fileNames"] = "~/quartzJobsAndTriggers.xml",
                 ["quartz.plugin.xml.FailOnFileNotFound"] = "true",

@@ -8,12 +8,13 @@ namespace WebApplication1.Models
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=Model1")
+            : base("name=Model11")
         {
         }
 
         public virtual DbSet<Forecast> Forecasts { get; set; }
         public virtual DbSet<History> Histories { get; set; }
+        public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

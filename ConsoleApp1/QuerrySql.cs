@@ -49,7 +49,7 @@ namespace ConsoleApp1
         public static int insertHistory(DateTime time, double capacity, double ghi, double evtTemp,int id)
         {
             string sql = @"INSERT INTO dbo.History
-        ( FactoryID, Time, Capacity, Ghi, EnviromentTemp )
+        ( FactoryID, Time, Capactiy, Ghi, EnviromentTemp )
 VALUES  ( @id, --FactoryID - int
           @time, -- Time - datetime
           @capacity, -- Capacity - float
@@ -74,7 +74,7 @@ VALUES  ( @id, --FactoryID - int
             string sql = @"INSERT INTO dbo.Forecast
         ( FactoryID ,
           Time ,
-          Capacity ,
+          Capactiy ,
           Ghi ,
           EnviromentTemp
         )

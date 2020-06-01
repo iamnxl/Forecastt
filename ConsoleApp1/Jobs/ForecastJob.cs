@@ -56,7 +56,7 @@ namespace ConsoleApp1.Jobs
             timeToGet = Convert.ToDateTime(QuerrySql.getMaxTimeHistory(id).Rows[0]["Time"]);
             foreach (DataRow row in QuerrySql.getHistoryByTime(id, timeToGet.AddDays(-1), timeToGet).Rows) //get data from previous 24 hours
             {
-                capacity.Add(Convert.ToDouble(row["Capacity"]));
+                capacity.Add(Convert.ToDouble(row["Capactiy"]));
                 ghi.Add(Convert.ToDouble(row["Ghi"]));
                 enviromentTemp.Add(Convert.ToDouble(row["EnviromentTemp"]));
                 time.Add(Convert.ToDateTime(row["Time"].ToString().Replace('-', '/').Replace('T', ' ')).TimeOfDay.TotalSeconds);

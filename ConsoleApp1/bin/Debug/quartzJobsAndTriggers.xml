@@ -2,22 +2,22 @@
 <job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" version="2.0">
   <schedule>
     <job>
-      <name>job1</name>
-      <group>MyJobGroup</group>
-      <description>My job 1</description>
-      <job-type>ConsoleApp1.Jobs.InsertDataJob, ConsoleApp1</job-type>
-    </job>
-    <job>
       <name>job2</name>
       <group>MyJobGroup</group>
       <description>My job 2</description>
       <job-type>ConsoleApp1.Jobs.ForecastJob, ConsoleApp1</job-type>
     </job>
+    <job>
+      <name>job1</name>
+      <group>MyJobGroup</group>
+      <description>My job 1</description>
+      <job-type>ConsoleApp1.Jobs.InsertDataJob, ConsoleApp1</job-type>
+    </job>
     <trigger>
       <cron>
-        <name>MyTrigger</name>
+        <name>MyTrigger2</name>
         <group>MyTriggerGroup</group>
-        <job-name>job1</job-name>
+        <job-name>job2</job-name>
         <job-group>MyJobGroup</job-group>
         <misfire-instruction>DoNothing</misfire-instruction>
         <cron-expression>0 0/1 * 1/1 * ? *</cron-expression>
@@ -25,9 +25,9 @@
     </trigger>
     <trigger>
       <cron>
-        <name>MyTrigger2</name>
+        <name>MyTrigger</name>
         <group>MyTriggerGroup</group>
-        <job-name>job2</job-name>
+        <job-name>job1</job-name>
         <job-group>MyJobGroup</job-group>
         <misfire-instruction>DoNothing</misfire-instruction>
         <cron-expression>0 0/1 * 1/1 * ? *</cron-expression>

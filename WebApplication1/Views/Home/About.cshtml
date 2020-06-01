@@ -1,7 +1,25 @@
 ﻿@{
-    ViewBag.Title = "About";
+    Layout = null;
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+<style>
+    div {
+        border: 1px solid #000000;
+        text-align: center;
+    }
+</style>
 
-<p>Use this area to provide additional information.</p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">Header</div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 col-sm-6">Content</div>
+        <div class="col-md-4 col-sm-6">Sidebar</div>
+        <div class="col-md-4 col-sm-12">Extra</div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">Footer</div>
+    </div>
+</div>
+<script src="~/Scripts/bootstrap.js"></script>
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
