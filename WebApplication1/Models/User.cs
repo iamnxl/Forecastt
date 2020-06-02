@@ -23,5 +23,6 @@ namespace WebApplication1.Models
         [Column(Order = 2)]
         [StringLength(100)]
         public string Email { get; set; }
+        public int Role { get; set; }
     }
 }

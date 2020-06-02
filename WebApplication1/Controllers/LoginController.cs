@@ -4,8 +4,8 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Security;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -20,6 +20,7 @@ namespace WebApplication1.Controllers
             int count = new Model1().Users.Where(x => x.Account == user.Account && x.Password == passEncode).Count();
             if (count == 1)
             {
+                FormsAuthentication.SetAuthCookie(user.Account, false);
                 Session["login"] = user.Account;
                 return RedirectToAction("ForecastGHI", "Home");
             }
@@ -55,6 +56,7 @@ namespace WebApplication1.Controllers
         public ActionResult LogOut()
         {
             Session.Clear();
+            FormsAuthentication.SignOut();
             return RedirectToAction("Index");
         }
         public static string EncodePassword(string password)
